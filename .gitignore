@@ -60,3 +60,30 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# =========================
+# Modern additions (important)
+# =========================
+
+# macOS junk
+.DS_Store
+
+# Xcode build folders
+DerivedData/
+build/
+
+# Xcode user workspace data
+*.xcworkspace/xcuserdata/
+
+# Xcode UI state
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager workspace user data
+.swiftpm/xcode/package.xcworkspace/xcuserdata/
+
+# Logs / temp
+*.log
+*.swp
+*.lock
