@@ -2,7 +2,7 @@
 //  PokeAPIModels.swift
 //  PokéQA Academy
 //
-//  Created by Codex on 2/5/26.
+//  Created by Ricky Memije on 2/5/26.
 //
 
 import Foundation
@@ -27,6 +27,11 @@ struct PokemonListItem: Decodable, Identifiable, Hashable {
     var displayName: String {
         name.capitalized
     }
+
+    var spriteURL: URL? {
+        guard id > 0 else { return nil }
+        return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")
+    }
 }
 
 struct NamedAPIResource: Decodable, Hashable {
@@ -35,6 +40,14 @@ struct NamedAPIResource: Decodable, Hashable {
 }
 
 struct RegionListResponse: Decodable {
+    let results: [NamedAPIResource]
+}
+
+struct TypeListResponse: Decodable {
+    let results: [NamedAPIResource]
+}
+
+struct GenerationListResponse: Decodable {
     let results: [NamedAPIResource]
 }
 
@@ -67,6 +80,25 @@ struct PokedexEntry: Decodable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case entryNumber = "entry_number"
+        case pokemonSpecies = "pokemon_species"
+    }
+}
+
+struct TypeDetail: Decodable {
+    let name: String
+    let pokemon: [TypePokemonEntry]
+}
+
+struct TypePokemonEntry: Decodable, Hashable {
+    let pokemon: NamedAPIResource
+}
+
+struct GenerationDetail: Decodable {
+    let name: String
+    let pokemonSpecies: [NamedAPIResource]
+
+    enum CodingKeys: String, CodingKey {
+        case name
         case pokemonSpecies = "pokemon_species"
     }
 }

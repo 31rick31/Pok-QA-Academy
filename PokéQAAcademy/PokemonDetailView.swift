@@ -2,7 +2,7 @@
 //  PokemonDetailView.swift
 //  PokéQA Academy
 //
-//  Created by Codex on 2/5/26.
+//  Created by Ricky Memije on 2/5/26.
 //
 
 import SwiftUI

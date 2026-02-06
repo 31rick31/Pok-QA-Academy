@@ -2,7 +2,7 @@
 //  PokeAPIService.swift
 //  PokéQA Academy
 //
-//  Created by Codex on 2/5/26.
+//  Created by Ricky Memije on 2/5/26.
 //
 
 import Foundation
@@ -67,6 +67,32 @@ struct PokeAPIService {
 
     func fetchPokedex(name: String) async throws -> PokedexResponse {
         let endpoint = "\(baseURL)/pokedex/\(name.lowercased())"
+        guard let url = URL(string: endpoint) else { throw PokeAPIError.invalidURL }
+        return try await fetch(url: url)
+    }
+
+    func fetchTypes() async throws -> [NamedAPIResource] {
+        let endpoint = "\(baseURL)/type"
+        guard let url = URL(string: endpoint) else { throw PokeAPIError.invalidURL }
+        let response: TypeListResponse = try await fetch(url: url)
+        return response.results
+    }
+
+    func fetchTypeDetail(name: String) async throws -> TypeDetail {
+        let endpoint = "\(baseURL)/type/\(name.lowercased())"
+        guard let url = URL(string: endpoint) else { throw PokeAPIError.invalidURL }
+        return try await fetch(url: url)
+    }
+
+    func fetchGenerations() async throws -> [NamedAPIResource] {
+        let endpoint = "\(baseURL)/generation"
+        guard let url = URL(string: endpoint) else { throw PokeAPIError.invalidURL }
+        let response: GenerationListResponse = try await fetch(url: url)
+        return response.results
+    }
+
+    func fetchGenerationDetail(name: String) async throws -> GenerationDetail {
+        let endpoint = "\(baseURL)/generation/\(name.lowercased())"
         guard let url = URL(string: endpoint) else { throw PokeAPIError.invalidURL }
         return try await fetch(url: url)
     }
