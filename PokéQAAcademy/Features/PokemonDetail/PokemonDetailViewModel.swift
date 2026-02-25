@@ -17,9 +17,13 @@ final class PokemonDetailViewModel: ObservableObject {
     private let service: PokeAPIService
     private let idOrName: String
 
-    init(idOrName: String, service: PokeAPIService = PokeAPIService()) {
+    init(idOrName: String, service: PokeAPIService? = nil) {
         self.idOrName = idOrName
-        self.service = service
+        if let service {
+            self.service = service
+        } else {
+            self.service = PokeAPIService(session: .shared)
+        }
     }
 
     func load() async {
