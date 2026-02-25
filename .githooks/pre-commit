@@ -1,0 +1,14 @@
+#!/bin/sh
+
+PBXPROJ=$(git ls-files | grep project.pbxproj)
+
+if git diff --cached -- "$PBXPROJ" | grep -E '^\+.*DEVELOPMENT_TEAM = "[A-Z0-9]+' >/dev/null; then
+  echo ""
+  echo "❌ Commit blocked!"
+  echo "Your Apple DEVELOPMENT_TEAM was added back into project.pbxproj."
+  echo ""
+  echo "Fix it by setting:"
+  echo 'DEVELOPMENT_TEAM = "";'
+  echo ""
+  exit 1
+fi
