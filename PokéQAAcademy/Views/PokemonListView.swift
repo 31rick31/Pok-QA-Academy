@@ -95,7 +95,7 @@ private struct PokemonListToolbar: ToolbarContent {
                     }
                 }
             } label: {
-                Label(viewModel.selectedPokedexTitle, systemImage: "map")
+                Label(viewModel.selectedPokedexTitle, systemImage: "globe.americas")
             }
         }
         ToolbarItem(placement: .topBarTrailing) {
@@ -106,7 +106,7 @@ private struct PokemonListToolbar: ToolbarContent {
                     }
                 }
             } label: {
-                Label(viewModel.selectedGenerationTitle, systemImage: "sparkles")
+                Label(viewModel.selectedGenerationTitle, systemImage: "scroll")
             }
         }
     }
